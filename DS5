@@ -1,0 +1,92 @@
+!
+no service password-encryption
+!
+hostname ds5
+sysLocation Building 57/2,Predelnaya st, Ekaterinburg, Russia
+sysContact support@nag.ru
+!
+username admin privilege 15 password 0 admin
+!
+authentication line console login local
+!
+!
+!
+!
+ssh-server enable
+!
+!
+!
+!
+!
+spanning-tree mode rstp
+spanning-tree
+spanning-tree priority 4096
+!
+spanning-tree process 1
+!
+!
+!
+!
+!
+!
+!
+!
+vlan 1;1000
+!
+vlan 105
+ name ds5
+!
+vlan 2103
+ name RS3-ds6
+!
+load-balance dst-src-mac-ip
+!
+port-group 1
+!
+Interface Ethernet1/0/1
+ switchport access vlan 1000
+!
+Interface Ethernet1/0/2
+ shutdown
+ switchport mode trunk
+ switchport trunk allowed vlan 1000;2103
+!
+Interface Ethernet1/0/3
+ shutdown
+ switchport mode trunk
+ switchport trunk allowed vlan 1000;2103
+!
+Interface Ethernet1/0/4
+!
+Interface Ethernet1/0/5
+!
+Interface Ethernet1/0/6
+ switchport access vlan 105
+ port-group 1 mode active
+!
+Interface Ethernet1/0/7
+ switchport access vlan 105
+ port-group 1 mode active
+!
+Interface Ethernet1/0/8
+ switchport access vlan 105
+ port-group 1 mode active
+!
+Interface Ethernet1/0/9
+!
+Interface Ethernet1/0/10
+!
+Interface Port-Channel1
+!
+interface Vlan1
+!
+interface Vlan1000
+ ip address 172.16.1.8 255.255.255.0
+!
+!
+no login
+!
+captive-portal
+!
+end
+
