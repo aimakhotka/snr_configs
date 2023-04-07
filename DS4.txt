@@ -1,0 +1,66 @@
+username admin privilege 15 password 0 admin
+!
+authentication line console login local
+!
+!
+!
+!
+ssh-server enable
+!
+!
+!
+!
+!
+spanning-tree mode rstp
+spanning-tree
+spanning-tree priority 4096
+ --More-- k
+!
+vlan 1000
+ name MAN
+!
+vlan 2102
+ name RS2-ds6
+!
+port-group 1
+!
+port-group 2
+ switchport mode trunk
+ switchport trunk allowed vlan 1000;2102
+!
+Interface Ethernet1/0/3
+ description TO_ds6
+ spanning-tree portfast
+ switchport mode trunk
+ switchport trunk allowed vlan 1000;2102
+!
+Interface Ethernet1/0/4
+ spanning-tree portfast
+ switchport access vlan 103
+ port-group 2 mode on
+!
+Interface Ethernet1/0/5
+ spanning-tree portfast
+!
+Interface Ethernet1/0/7
+ spanning-tree portfast
+ switchport access vlan 105
+ port-group 1 mode on
+!
+Interface Ethernet1/0/8
+ spanning-tree portfast
+ switchport access vlan 105
+ port-group 1 mode on
+!
+Interface Ethernet1/0/9
+!
+Interface Ethernet1/0/10
+!
+Interface Port-Channel1
+!
+!
+no login
+!
+captive-portal
+!
+end
