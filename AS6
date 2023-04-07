@@ -1,0 +1,80 @@
+!
+no service password-encryption
+!
+hostname AS6
+sysLocation Building 57/2,Predelnaya st, Ekaterinburg, Russia
+sysContact support@nag.ru
+!
+username admin privilege 15 password 0 admin
+username sirius privilege 15 password 0 sirius123456
+!
+authentication line console login local
+!
+!
+!
+!
+ssh-server enable
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+vlan 1;16-17;25-26;1000
+!
+Interface Ethernet1/0/1
+ switchport access vlan 1000
+!
+Interface Ethernet1/0/2
+ description "TO AS7 TO 1/0/2"
+ switchport mode trunk
+ switchport trunk allowed vlan 16-17;25-26;1000
+!
+Interface Ethernet1/0/3
+ description "TO AS5 TO 1/0/3"
+ switchport mode trunk
+ switchport trunk allowed vlan 16-17;25-26;1000
+!
+Interface Ethernet1/0/4
+ switchport access vlan 16
+!
+Interface Ethernet1/0/5
+ description "PRIVATE NETWORK"
+ switchport access vlan 25
+!
+Interface Ethernet1/0/6
+ switchport access vlan 16
+!
+Interface Ethernet1/0/7
+ description "LOCAL MANAGMENT"
+ switchport access vlan 1000
+!
+Interface Ethernet1/0/8
+ switchport access vlan 16
+!
+Interface Ethernet1/0/9
+!
+Interface Ethernet1/0/10
+!
+interface Vlan1
+!
+interface Vlan16
+!
+interface Vlan25
+!
+interface Vlan26
+!
+interface Vlan1000
+ ip address 172.16.1.17 255.255.255.0
+!
+!
+no login
+!
+captive-portal
+!
+end
