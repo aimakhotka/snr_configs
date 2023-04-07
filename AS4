@@ -1,0 +1,74 @@
+!
+no service password-encryption
+!
+hostname AS4
+sysLocation Building 57/2,Predelnaya st, Ekaterinburg, Russia
+sysContact support@nag.ru
+!
+username admin privilege 15 password 0 admin
+!
+authentication line console login local
+!
+!
+!
+!
+ssh-server enable
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+vlan 1;40;1000
+!
+Interface Ethernet1/0/1
+ description MAIN_as4
+ switchport access vlan 1000
+!
+Interface Ethernet1/0/2
+ description client
+ switchport access vlan 40
+!
+Interface Ethernet1/0/3
+ description client
+ switchport access vlan 40
+!
+Interface Ethernet1/0/4
+ description client
+ switchport access vlan 40
+!
+Interface Ethernet1/0/5
+ description client
+ switchport access vlan 40
+!
+Interface Ethernet1/0/6
+ description client
+ switchport access vlan 40
+!
+Interface Ethernet1/0/7
+ description client
+ switchport access vlan 40
+!
+Interface Ethernet1/0/8
+ description to_DS7
+ switchport mode trunk
+ switchport trunk allowed vlan 40;1000
+!
+Interface Ethernet1/0/9
+!
+Interface Ethernet1/0/10
+!
+interface Vlan1000
+ ip address 172.16.1.15 255.255.255.0
+!
+!
+no login
+!
+captive-portal
+!
+end
