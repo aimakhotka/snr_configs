@@ -1,0 +1,107 @@
+ds7#sh run
+!
+no service password-encryption
+!
+hostname ds7
+sysLocation Building 57/2,Predelnaya st, Ekaterinburg, Russia
+sysContact support@nag.ru
+!
+username admin privilege 15 password 0 admin
+username Admin-sirius privilege 15 password 0 Admin-sirius123456
+!
+authentication line console login local
+!
+!
+!
+!
+ssh-server enable
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+vlan 1 
+!
+vlan 10
+ name to_as1
+!
+vlan 20
+ name to_as2
+!
+vlan 30
+ name to_as3
+!
+vlan 40
+ name to_as4
+!
+vlan 1000
+ name MAN
+!
+port-group 1
+!
+Interface Ethernet1/0/1
+ description connect_to_management
+ switchport access vlan 1000
+!
+Interface Ethernet1/0/2
+ description connect_to_as1
+ switchport mode trunk
+ switchport trunk allowed vlan 10;1000 
+!
+Interface Ethernet1/0/3
+ description connect_to_as2
+ switchport mode trunk
+ switchport trunk allowed vlan 20;1000 
+!
+Interface Ethernet1/0/4
+ description connect_to_as3
+ switchport mode trunk
+ switchport trunk allowed vlan 30;1000 
+!
+Interface Ethernet1/0/5
+ description connect_to_as4
+ switchport mode trunk
+ switchport trunk allowed vlan 40;1000 
+!
+Interface Ethernet1/0/6
+ description connect_to_R4
+ switchport mode trunk
+ switchport trunk allowed vlan 10;20;30;40;1000 
+ port-group 1 mode active
+!
+Interface Ethernet1/0/7
+ description connect_to_R4
+ switchport mode trunk
+ switchport trunk allowed vlan 10;20;30;40;1000 
+ port-group 1 mode active
+!
+Interface Ethernet1/0/8
+!
+Interface Ethernet1/0/9
+!
+Interface Ethernet1/0/10
+!
+Interface Port-Channel1
+!
+interface Vlan1
+ ip address 192.168.1.165 255.255.255.0
+!
+interface Vlan1000
+ ip address 172.16.1.11 255.255.255.0
+!
+!
+no login
+!
+captive-portal
+!
+end
+
+ds7#      
+
+

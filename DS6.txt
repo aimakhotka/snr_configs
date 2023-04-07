@@ -1,0 +1,100 @@
+DS6#sh run
+!
+no service password-encryption
+!
+hostname DS6
+sysLocation Building 57/2,Predelnaya st, Ekaterinburg, Russia
+sysContact support@nag.ru
+!
+username admin privilege 15 password 0 admin
+!
+authentication line console login local
+!
+!
+!
+!
+ssh-server enable
+!
+!
+!
+!
+!
+spanning-tree mode rstp
+spanning-tree
+spanning-tree priority 4096
+!
+!
+!
+!
+!
+!
+!
+vlan 1
+!
+vlan 1000
+ name MAN
+!
+vlan 2101
+ name ds3-R4
+!
+vlan 2102
+ name ds4-R4
+!
+vlan 2103
+ name ds5-R4
+!
+port-group 1
+!
+Interface Ethernet1/0/1
+ description man
+ switchport access vlan 1000
+!
+Interface Ethernet1/0/2
+!
+Interface Ethernet1/0/3
+ description DS3
+ switchport mode trunk
+ switchport trunk allowed vlan 1000;2101
+!
+Interface Ethernet1/0/4
+ description DS4
+ switchport mode trunk
+ switchport trunk allowed vlan 1000;2102
+!
+Interface Ethernet1/0/5
+ description DS5
+ switchport mode trunk
+ switchport trunk allowed vlan 1000;2103
+!
+Interface Ethernet1/0/6
+ description man
+ switchport access vlan 1000
+!
+Interface Ethernet1/0/7
+ switchport mode trunk
+ switchport trunk allowed vlan 1000;2101-2103
+ port-group 1 mode active
+!
+Interface Ethernet1/0/8
+ switchport mode trunk
+ switchport trunk allowed vlan 1000;2101-2103
+ port-group 1 mode active
+!
+Interface Ethernet1/0/9
+!
+Interface Ethernet1/0/10
+!
+Interface Port-Channel1
+ description R4
+!
+interface Vlan1
+!
+interface Vlan1000
+ ip address 172.16.1.9 255.255.255.0
+!
+!
+no login
+!
+captive-portal
+!
+end

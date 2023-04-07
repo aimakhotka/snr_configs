@@ -1,0 +1,197 @@
+!
+no service password-encryption
+!
+hostname ds1
+sysLocation Building 57/2,Predelnaya st, Ekaterinburg, Russia
+sysContact support@nag.ru
+!
+username admin privilege 15 password 0 admin
+username Admin-sirius privilege 15 password 0 Admin-sirius123456
+!
+authentication line console login local
+!
+!
+!
+!
+ssh-server enable
+!
+!
+!
+!
+!
+lldp enable
+!
+!
+!
+!
+!
+!
+!
+vlan 1;2501;2505;2509
+!
+vlan 1000
+ name man
+!
+port-group 1
+!
+Interface Ethernet1/0/1
+!
+Interface Ethernet1/0/2
+ switchport access vlan 1000
+!
+Interface Ethernet1/0/3
+ description tp_srv
+ switchport access vlan 1000
+!
+Interface Ethernet1/0/4
+ switchport mode trunk
+ switchport trunk allowed vlan 1000;2501;2505;2509
+ port-group 1 mode active
+!
+Interface Ethernet1/0/5
+ description from_rs1_to_mikro
+ switchport access vlan 2501
+!
+Interface Ethernet1/0/6
+ switchport mode trunk
+ switchport trunk allowed vlan 1000;2501;2505;2509
+ port-group 1 mode active
+!
+Interface Ethernet1/0/7
+ description from_rs2_to_mikro
+ switchport access vlan 2505
+!
+Interface Ethernet1/0/8
+ description from_rs3_to_mikro
+ switchport access vlan 2509
+!
+Interface Ethernet1/0/9
+!
+Interface Ethernet1/0/10
+!
+Interface Port-Channel1
+!
+interface Vlan1000
+ ip address 172.16.1.1 255.255.255.0
+!
+!
+no login
+!
+captive-portal
+!
+end
+
+ds1#
+
+User Access Verification
+
+Username:
+Password:
+Username:
+Password:
+Username:
+Password:
+% Login invalid, too many failures!
+
+User Access Verification
+
+Username: a%Jan 01 06:09:50:687 2006 Console: User , login failed from console
+dmin
+Password:
+DS2#sh running-config
+!
+no service password-encryption
+!
+hostname DS2
+sysLocation Building 57/2,Predelnaya st, Ekaterinburg, Russia
+sysContact support@nag.ru
+!
+username admin privilege 15 password 0 admin
+username Admin-sirius privilege 15 password 0 Admin-sirius123456
+!
+authentication line console login local
+!
+!
+!
+!
+ssh-server enable
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+vlan 1;1000;2001-2006;2505;2509
+!
+vlan 2501
+ name ospf_R1-srv
+!
+port-group 1
+!
+Interface Ethernet1/0/1
+ description to_my_pc
+!
+Interface Ethernet1/0/2
+ switchport access vlan 1000
+!
+Interface Ethernet1/0/3
+ description to_r1
+ switchport mode trunk
+ switchport trunk allowed vlan 1000;2001;2004;2006;2501
+!
+Interface Ethernet1/0/4
+ description port_group
+ switchport mode trunk
+ switchport trunk allowed vlan 123;1000;2501;2505;2509
+ port-group 1 mode active
+!
+Interface Ethernet1/0/5
+ description to_r2
+ switchport mode trunk
+ switchport trunk allowed vlan 1000;2002;2004-2005;2505
+!
+Interface Ethernet1/0/6
+ description port_group
+ switchport mode trunk
+ switchport trunk allowed vlan 123;1000;2501;2505;2509
+ port-group 1 mode active
+!
+Interface Ethernet1/0/7
+ description to_r3
+ switchport mode trunk
+ switchport trunk allowed vlan 1000;2003;2005-2006;2509
+!
+Interface Ethernet1/0/8
+!
+Interface Ethernet1/0/9
+!
+Interface Ethernet1/0/10
+!
+Interface Port-Channel1
+!
+interface Vlan1
+ ip address 192.168.1.166 255.255.255.0
+!
+interface Vlan1000
+ ip address 172.16.1.2 255.255.255.0
+!
+interface Vlan2001
+ ip address 10.10.100.2 255.255.255.252
+!
+interface Vlan2002
+ ip address 10.10.100.6 255.255.255.252
+!
+interface Vlan2003
+ ip address 10.10.100.10 255.255.255.252
+!
+!
+no login
+!
+captive-portal
+!
+end

@@ -1,0 +1,82 @@
+!
+no service password-encryption
+!
+hostname ds1
+sysLocation Building 57/2,Predelnaya st, Ekaterinburg, Russia
+sysContact support@nag.ru
+!
+username admin privilege 15 password 0 admin
+username Admin-sirius privilege 15 password 0 Admin-sirius123456
+!
+authentication line console login local
+!
+!
+!
+!
+ssh-server enable
+!
+!
+!
+!
+!
+lldp enable
+!
+!
+!
+!
+!
+!
+!
+vlan 1;2501;2505;2509
+!
+vlan 1000
+ name man
+!
+port-group 1
+!
+Interface Ethernet1/0/1
+!
+Interface Ethernet1/0/2
+ switchport access vlan 1000
+!
+Interface Ethernet1/0/3
+ description tp_srv
+ switchport access vlan 1000
+!
+Interface Ethernet1/0/4
+ switchport mode trunk
+ switchport trunk allowed vlan 1000;2501;2505;2509
+ port-group 1 mode active
+!
+Interface Ethernet1/0/5
+ description from_rs1_to_mikro
+ switchport access vlan 2501
+!
+Interface Ethernet1/0/6
+ switchport mode trunk
+ switchport trunk allowed vlan 1000;2501;2505;2509
+ port-group 1 mode active
+!
+Interface Ethernet1/0/7
+ description from_rs2_to_mikro
+ switchport access vlan 2505
+!
+Interface Ethernet1/0/8
+ description from_rs3_to_mikro
+ switchport access vlan 2509
+!
+Interface Ethernet1/0/9
+!
+Interface Ethernet1/0/10
+!
+Interface Port-Channel1
+!
+interface Vlan1000
+ ip address 172.16.1.1 255.255.255.0
+!
+!
+no login
+!
+captive-portal
+!
+end
