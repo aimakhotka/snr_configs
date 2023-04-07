@@ -1,0 +1,79 @@
+!
+no service password-encryption
+!
+hostname AS3
+sysLocation Building 57/2,Predelnaya st, Ekaterinburg, Russia
+sysContact support@nag.ru
+!
+username admin privilege 15 password 0 admin
+username Admin-sirius privilege 15 password 0 Admin-sirius123456
+!
+authentication line console login local
+!
+!
+!
+!
+ssh-server enable
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+vlan 1;30;1000
+!
+Interface Ethernet1/0/1
+ description MAIN_as3
+ switchport access vlan 1000
+!
+Interface Ethernet1/0/2
+ description client_to_as
+ switchport access vlan 30
+!
+Interface Ethernet1/0/3
+ description client_to_as
+ switchport access vlan 30
+!
+Interface Ethernet1/0/4
+ description client_to_as
+ switchport access vlan 30
+!
+Interface Ethernet1/0/5
+ description client_to_as
+ switchport access vlan 30
+!
+Interface Ethernet1/0/6
+ description client_to_as
+ switchport access vlan 30
+!
+Interface Ethernet1/0/7
+ description client_to_as
+ switchport access vlan 30
+!
+Interface Ethernet1/0/8
+ switchport mode trunk
+ switchport trunk allowed vlan 30;1000
+!
+Interface Ethernet1/0/9
+!
+Interface Ethernet1/0/10
+!
+interface Vlan1
+ ip address 192.168.1.166 255.255.255.0
+!
+interface Vlan30
+!
+interface Vlan1000
+ ip address 172.16.1.14 255.255.255.0
+!
+!
+no login
+!
+captive-portal
+!
+end
