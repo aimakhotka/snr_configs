@@ -1,15 +1,15 @@
 # snr_configs
-Лабораторная работа с 18 реальными коммутаторами SNR 2-го и 3-го уровня
+Laboratory work with 18 real SNR 2nd and 3rd level switches
 
 ## Постановка задачи
 ![Task](https://github.com/Dubrovsky18/snr_configs/blob/master/image.png)
 
-[X] Настроить сеть коорпоративной сети, которая имеет внешний доступ в сервер 10.10.100.1 - ds1
+[X] Configure the corporate network with external access to the server 10.10.100.1 - ds1
 
-[X] На каждом маршрутизаторе и коммутаторе установить тэг упраления Vlan 1000.
+[X] Set the management VLAN tag 1000 on each router and switch.
 
-[X] На маршрутизаторах настроить OSPF и Access-list
+[X] Configure OSPF and Access-list on the routers.
 
-[X] Клиенские зоны AS5-AS6-AS7 и AS1-AS2-AS3-AS4, которые имеют свою подсеть (10.10.#.0/24), не должны видеть другие подсеть, но должны обращаться на сервер 10.10.100.0
+[X] Client zones AS5-AS6-AS7 and AS1-AS2-AS3-AS4, each having its subnet (10.10.#.0/24), should not see other subnets but should access the server 10.10.100.0.
 
-[X] На зонах DS2-DS1, DS3-DS4-DS5, DS6-R4-DS7 настроить LACP для улучшения пропускной способности.
+[X] Configure LACP on zones DS2-DS1, DS3-DS4-DS5, DS6-R4-DS7 to improve throughput.
